@@ -15,12 +15,12 @@ wangyuchiao、Hsuan0528、Yunnn-45、Julie1239、alicesnorlax
 ## 組員分工
 1. 王禹喬：建立 Repository 與邀請 Collaborators
 2. 王禹喬：新增單字並 commit
-3. 鍾姝亭：新增功能
+3. 鍾姝亭：新增隨機卡功能
 4. 鍾姝亭：整理 README
 
 ## 本次新增的單字與功能
 - 單字：collaboration、repository、commit
-- 功能：（等第二位組員完成後填寫）
+- 功能：隨機卡
 
 ## Google Colab 開啟連結
 https://colab.research.google.com/github/wangyuchiao/vocabuddy-group-5/blob/main/VocaBuddy.ipynb
