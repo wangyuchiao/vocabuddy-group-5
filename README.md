@@ -54,7 +54,33 @@ node e2_contract.js
 ### 使用 AI 的紀錄
 - 使用 Claude（VS Code 版用 Claude Code，Colab 版用對話視窗）。
 - Colab 版依投影片流程：先請 AI 列計畫，經回覆「執行」後才取得程式。
-- Review 紀錄：待補（Lab 14）。
+- Review 紀錄：見下方「Review 紀錄（Lab 14）」。
+
+## Review 紀錄（Lab 14）
+
+### 審查範圍與方式
+- 範圍：E2 的實際變更，也就是 `617a41a`（課堂起點）到 `09fa652`（E2 成果）之間 `ytp-e2/app/` 與 `README.md` 的差異。
+- 人審：組員在 Colab 步驟 7 的 diff 比較格，以及 VS Code 版的 `git diff` 檢視變更，內容與預期一致（三個單字、`countDue`、新測試檔），未發現其他問題。
+- AI 審：由 Claude 以唯讀方式檢查同一份 diff（需求符合、邊界、回歸、額外改動）。限制：這次審查與實作在同一個對話中進行，不是獨立的新對話，獨立性有限。
+- 測試證據：`test_srs.js`、`test_csv.js`、`check_words.js`、`test_count_due.js`、`e2_contract.js` 全部通過（21 字）。
+
+### 重點：「今天到期也要算」
+| 項目 | 內容 |
+|---|---|
+| 需求 | 回傳 `due <= today` 的筆數；`due` 等於 `today`（今天到期）也要算 |
+| 程式 | `ytp-e2/app/srs.js` 第 14 行：`if (s.due <= today) n++;` |
+| 測試 | `ytp-e2/app/test_count_due.js` 第 5 行（`due` 為 99、100、101，`today=100`，預期 2）、第 6 行（`due=100`，`today=100`，預期 1）；`ytp-e2/app/e2_contract.js` 第 8 行（同樣預期 2） |
+| 驗證 | 在臨時副本把 `<=` 改成 `<`：`test_count_due.js` 與 `e2_contract.js` 都失敗（`1 !== 2`）；改回 `<=` 後五支測試全部通過 |
+| 結論 | 這個邊界未發現問題。若有人主張 `<` 也可以，反證是：`due=100`、`today=100` 預期為 1，用 `<` 會得到 0 |
+
+### 人審與 AI 審查的對照
+| 項目 | 內容 |
+|---|---|
+| 共同發現（兩邊都指出的問題） | 無。兩邊都沒有指出需要修正的程式錯誤。 |
+| 只有人發現（AI 漏掉的地方） | 無。 |
+| 只有 AI 發現（人要再查證） | 1. 【中】README 原有的「本次新增的單字與功能」段落（collaboration、repository、commit；隨機卡）在 E2 commit `09fa652` 中被移除。查證：`git diff 31863e9 09fa652 -- README.md` 確實刪除了該段。<br>2. 【低】`countDue` 沒有檢查輸入。實際執行的結果：`[{due:"99"}]`、`today=100` 回傳 1（字串被自動轉成數字）；`due` 為 `NaN` 或缺少時不計入（回傳 0）；`states` 為 `null` 或元素為 `null` 會拋出 `TypeError`。 |
+| AI 誤報（附反證與不採納原因） | 項目 1：經組員查證，那段是組員刻意移除的，不是誤刪。它記錄的是上一次任務的內容，這次 README 改為記錄 E2 的成果。不採納。 |
+| 最後決定 | 1. 不採納：維持現狀，不還原「本次新增的單字與功能」段落。<br>2. 不採納：題目規定輸入為有限數值，本堂不納入非法輸入處理；若日後把 `countDue` 接上畫面，再補輸入驗證。<br>3. 「今天到期」邊界維持 `<=`，不修改程式。 |
 
 ## Google Colab 開啟連結
 https://colab.research.google.com/github/wangyuchiao/vocabuddy-group-5/blob/main/VocaBuddy.ipynb
