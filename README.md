@@ -10,10 +10,7 @@ AC^3
 wangyuchiao、Hsuan0528、Yunnn-45、Julie1239、alicesnorlax
 
 ## 專案簡介
-英文單字學習專案，目前有兩個版本：
-
-- **Colab 版**（`VocaBuddy.ipynb`）：用 Google Colab 製作，可以顯示單字與中文解釋，並有隨機單字功能。
-- **網頁版**（`ytp-e2/app/`，E2 練習）：以課堂提供的起點為基礎，具備間隔複習排程、單字包 CSV 匯入與離線快取。我們在這個版本上新增了三個程式主題單字（loop、variable、debug）、到期計數函式 `countDue`，以及對應的測試。
+英文單字學習專案。原本是用 Google Colab 製作的單字卡（顯示單字與中文解釋、隨機卡），E2 練習中另外加入網頁版（`ytp-e2/app/`），並新增三個程式主題單字與到期計數函式 `countDue`。
 
 ## 組員分工
 1. 王禹喬：建立 Repository 與邀請 Collaborators
