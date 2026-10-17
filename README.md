@@ -10,7 +10,7 @@ AC^3
 wangyuchiao、Hsuan0528、Yunnn-45、Julie1239、alicesnorlax
 
 ## 專案簡介
-用Google Colab 製作的英文單字學習程式，可以顯示單字與中文解釋。
+英文單字學習專案。原本是用 Google Colab 製作的單字卡（顯示單字與中文解釋、隨機卡），E2 練習中另外加入網頁版（`ytp-e2/app/`），並新增三個程式主題單字與到期計數函式 `countDue`。
 
 ## 組員分工
 1. 王禹喬：建立 Repository 與邀請 Collaborators
@@ -89,3 +89,6 @@ https://colab.research.google.com/github/wangyuchiao/vocabuddy-group-5/blob/main
 1. 點上方 Colab 連結開啟 Notebook
 2. 選擇「執行階段 → 全部執行」
 3. 查看下方輸出結果
+   
+### 網頁版執行方式
+在 `ytp-e2/app/` 資料夾執行 `python3 -m http.server 8000`，再用瀏覽器開啟 http://localhost:8000。
